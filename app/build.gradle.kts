@@ -7,16 +7,16 @@ plugins {
 
 android {
     namespace = "com.ghanshyam.cashmate"
-    compileSdk = 33
+    compileSdk = 34
 
-//    viewBinding {
-//        enabled = true
-//    }
+buildFeatures{
+    viewBinding = true
+}
 
     defaultConfig {
         applicationId = "com.ghanshyam.cashmate"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 

@@ -62,7 +62,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:tabIndicatorColor="@color/white"
-        app:tabMode="scrollable"
         app:tabTextColor="@color/white">
 
         <com.google.android.material.tabs.TabItem
@@ -120,13 +119,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Income" />
+                android:text="Income"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="0.0" />
+                android:text="0.0"
+                android:textColor="#41A61A" />
         </LinearLayout>
 
         <LinearLayout
@@ -140,13 +141,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Expense" />
+                android:text="Expense"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="0.0" />
+                android:text="0.0"
+                android:textColor="#B71C1C" />
         </LinearLayout>
 
         <LinearLayout
@@ -161,7 +164,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Total" />
+                android:text="Total"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textView"
@@ -191,11 +195,23 @@
         android:layout_height="73dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="24dp"
+        android:backgroundTint="@color/grey"
         android:clickable="true"
         android:tintMode="@color/white"
-        android:backgroundTint="@color/grey"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/baseline_add_24" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/transactions_list"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintVertical_bias="1.0"
+        tools:listitem="@layout/row_transaction" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
