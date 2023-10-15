@@ -1,8 +1,10 @@
-package com.ghanshyam.cashmate
+package com.ghanshyam.cashmate.Views.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import com.ghanshyam.cashmate.R
+import com.ghanshyam.cashmate.Views.fragments.AddTransactionFragment
 import com.ghanshyam.cashmate.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -15,11 +17,16 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding?.materialToolbar)
         supportActionBar?.title = "Transactions"
-    }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.top_menu, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
+        binding!!.floatingActionButton.setOnClickListener {
+            val fragment = AddTransactionFragment()
+            fragment.show(supportFragmentManager, null)
+        }
 
+        fun onCreateOptionsMenu(menu: Menu?): Boolean {
+            menuInflater.inflate(R.menu.top_menu, menu)
+            return super.onCreateOptionsMenu(menu)
+        }
+
+    }
 }
