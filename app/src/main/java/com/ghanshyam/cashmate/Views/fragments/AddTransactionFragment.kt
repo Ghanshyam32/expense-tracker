@@ -1,12 +1,17 @@
 package com.ghanshyam.cashmate.Views.fragments
 
+import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.GridLayoutManager
+import com.ghanshyam.cashmate.Adapters.CategoryAdapter
+import com.ghanshyam.cashmate.Models.Category
 import com.ghanshyam.cashmate.R
+import com.ghanshyam.cashmate.databinding.CategoryDialogBinding
 import com.ghanshyam.cashmate.databinding.FragmentAddTransactionBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import java.text.SimpleDateFormat
@@ -86,7 +91,25 @@ class AddTransactionFragment : BottomSheetDialogFragment() {
             }
         }
 
+        binding.category.setOnClickListener { c ->
+            val categoryBinding: CategoryDialogBinding = CategoryDialogBinding.inflate(inflater)
+            val categoryDialog: AlertDialog = AlertDialog.Builder(context).create()
+            categoryDialog.setView(categoryBinding.root)
 
+            val categories: ArrayList<Category> = ArrayList()
+            categories.add(Category("Salary", R.drawable.salary))
+            categories.add(Category("Business", R.drawable.business))
+            categories.add(Category("Investment", R.drawable.investment))
+            categories.add(Category("Loan", R.drawable.loan))
+            categories.add(Category("Rent", R.drawable.rent))
+            categories.add(Category("Other", R.drawable.menu))
+
+            val categoryAdapter: CategoryAdapter = CategoryAdapter(requireContext(), categories)
+            categoryBinding.rectangles.layoutManager = GridLayoutManager(requireContext(), 3)
+            categoryBinding.rectangles.adapter = categoryAdapter
+
+            categoryDialog.show()
+        }
 
         return rootView
     }

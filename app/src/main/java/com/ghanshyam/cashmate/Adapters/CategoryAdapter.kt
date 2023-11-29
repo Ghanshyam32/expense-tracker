@@ -4,42 +4,36 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.ghanshyam.cashmate.Models.Category
-import com.ghanshyam.cashmate.R
+import com.ghanshyam.cashmate.databinding.SampleCategoryBinding
 
-class CategoryAdapter(
-    private val context: Context,
-    private val categories: ArrayList<Category>,
-    private val categoryClickListener: CategoryClickListener
-) : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
+class CategoryAdapter(private val context: Context, private val categories: ArrayList<Category>) : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
-    interface CategoryClickListener {
-        fun onCategoryClicked(category: Category)
+    inner class CategoryViewHolder(val binding: SampleCategoryBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.sample_category, parent, false)
-        return CategoryViewHolder(view)
-    }
-
-    override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
-        val category = categories[position]
-        holder.bind(category)
+        val binding = SampleCategoryBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
+        return CategoryViewHolder(binding)
     }
 
     override fun getItemCount(): Int {
         return categories.size
     }
 
-    inner class CategoryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        // Define views and initialize them here
+    override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
+        val category: Category = categories[position]
+        holder.binding.categoryText.text = category.getCategoryName()
+        holder.binding.categoryIcon.setImageResource(category.getCategoryImage())
 
-        fun bind(category: Category) {
-            // Bind data to views in the ViewHolder here
-            itemView.setOnClickListener {
-                categoryClickListener.onCategoryClicked(category)
-            }
-        }
     }
+
+
 }
