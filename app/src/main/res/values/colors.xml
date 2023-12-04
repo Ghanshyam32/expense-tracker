@@ -5,4 +5,10 @@
     <color name="grey">#434345</color>
     <color name="green">#264E17</color>
     <color name="red">#9E1414</color>
+
+    <color name="paytm_color">#A8004175</color>
+    <color name="cash_color">#A8007502</color>
+    <color name="card_color">#A8750033</color>
+    <color name="default_color">#A8303030</color>
+
 </resources>

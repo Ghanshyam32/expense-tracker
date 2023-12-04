@@ -20,6 +20,8 @@ import com.ghanshyam.cashmate.R
 import com.ghanshyam.cashmate.databinding.DialogListBinding
 import com.ghanshyam.cashmate.databinding.FragmentAddTransactionBinding
 import com.ghanshyam.cashmate.databinding.RowAccountsBinding
+import com.ghanshyam.cashmate.utils.Constants.Companion.categories
+import com.ghanshyam.cashmate.utils.Helper
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -85,8 +87,7 @@ class AddTransactionFragment : BottomSheetDialogFragment() {
                 calendar.set(Calendar.MONTH, view.month)
                 calendar.set(Calendar.YEAR, view.year)
 
-                val simpleDateFormat: SimpleDateFormat = SimpleDateFormat("dd-MMMM-yyyy")
-                val dateToShow = simpleDateFormat.format(calendar.time)
+                val dateToShow = Helper.formatDate(calendar.time)
 
                 binding.datePicker.setText(dateToShow)
 
@@ -98,13 +99,7 @@ class AddTransactionFragment : BottomSheetDialogFragment() {
             val categoryDialog: AlertDialog = AlertDialog.Builder(context).create()
             categoryDialog.setView(categoryBinding.root)
 
-            val categories: ArrayList<Category> = ArrayList()
-            categories.add(Category("Salary", R.drawable.salary))
-            categories.add(Category("Business", R.drawable.business))
-            categories.add(Category("Investment", R.drawable.investment))
-            categories.add(Category("Loan", R.drawable.loan))
-            categories.add(Category("Rent", R.drawable.rent))
-            categories.add(Category("Other", R.drawable.menu))
+
 
             // Implementing CategoryClickListener
             val categoryClickListener = object : CategoryClickListener {
@@ -143,7 +138,12 @@ class AddTransactionFragment : BottomSheetDialogFragment() {
             val adapter: AccountAdapter =
                 AccountAdapter(requireContext(), accounts, accountClickListener)
             accountBinding.rectangles.layoutManager = LinearLayoutManager(context)
-            accountBinding.rectangles.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+            accountBinding.rectangles.addItemDecoration(
+                DividerItemDecoration(
+                    context,
+                    DividerItemDecoration.VERTICAL
+                )
+            )
             accountBinding.rectangles.adapter = adapter
 
             accountDialog.show()
